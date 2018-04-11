@@ -3,6 +3,7 @@ package com.test.controller;
 import com.test.domain.User;
 import com.test.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +20,9 @@ public class LoginController {
 
     @Autowired
     private LoginService loginService;
+
+    @Value(value = "${test.name}")
+    private String str;
 
     @RequestMapping(value = "login")
     public ModelAndView login(User user, HttpServletRequest request, HttpServletResponse response) {
