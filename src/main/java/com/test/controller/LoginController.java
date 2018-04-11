@@ -22,6 +22,7 @@ public class LoginController {
 
     @RequestMapping(value = "login")
     public ModelAndView login(User user, HttpServletRequest request, HttpServletResponse response) {
+        //测试idea提交git
         ModelAndView mv = new ModelAndView();
         boolean b = loginService.login(user);
         if (b) {
