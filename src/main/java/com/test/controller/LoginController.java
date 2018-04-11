@@ -21,6 +21,7 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
+    //测试@Value是否成功
     @Value(value = "${test.name}")
     private String str;
 
