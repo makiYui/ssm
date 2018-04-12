@@ -2,6 +2,7 @@ package com.test.controller;
 
 import com.test.domain.User;
 import com.test.service.LoginService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping(value = "index")
 public class LoginController {
+
+    private Logger logger = Logger.getLogger(getClass());
 
     @Autowired
     private LoginService loginService;
@@ -37,6 +40,15 @@ public class LoginController {
             mv.addObject("message", "fail");
             mv.setViewName("/fail");
         }
+        return mv;
+    }
+
+    @RequestMapping(value = "test")
+    public ModelAndView testlogger(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView mv = new ModelAndView();
+        logger.error("error");
+        mv.addObject("message", "fail");
+        mv.setViewName("/fail");
         return mv;
     }
 }
