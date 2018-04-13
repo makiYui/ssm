@@ -30,18 +30,21 @@
     <mvc:resources mapping="/images/**" location="/images/" />
     <mvc:resources mapping="/jsp/**" location="/WEB-INF/view/" /><!--你要访问的文件目录-->
 
-    <bean id="logInterceptor" class="com.test.aspect.LogAspect"/>
+    <!--<bean id="logInterceptor" class="com.test.aspect.LogAspect"/>-->
     <!--强制使用gblib代理，如果不设置，将默认使用jdk的代理，但是jdk的代理是基于接口形式-->
-    <aop:config proxy-target-class="true"/>
+    <!--<aop:config proxy-target-class="true"/>
     <aop:config>
-        <!--定义切面-->
+        &lt;!&ndash;定义切面&ndash;&gt;
         <aop:aspect id="logAspect" ref="logInterceptor">
-            <!--定义切入点(配置com.test.controller下所有的类在调用之前会被拦截)-->
+            &lt;!&ndash;定义切入点(配置com.test.controller下所有的类在调用之前会被拦截)&ndash;&gt;
             <aop:pointcut id="logPointCut" expression="execution(* com.test.controller.*.*(..))"/>
             <aop:before method="before()" pointcut-ref="logPointCut"/>
             <aop:after method="after()" pointcut-ref="logPointCut"/>
         </aop:aspect>
-    </aop:config>
+    </aop:config>-->
+
+    <!--基于注解的方式来实现aop-->
+    <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
 
     <!--视图解析器-->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
