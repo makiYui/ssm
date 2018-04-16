@@ -133,6 +133,12 @@
       <artifactId>aspectjweaver</artifactId >
       <version>1.8.7</version >
     </dependency>
+
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.46</version>
+    </dependency>
   </dependencies>
 
   <build>

@@ -13,7 +13,21 @@
         http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--spring启用注解驱动-->
-    <mvc:annotation-driven/>
+    <!--<mvc:annotation-driven/>-->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean id="fastJsonHttpMessageConverter"
+                  class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <!-- 这里顺序不能反，一定先写text/html,不然ie下出现下载提示 -->
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
     <!--注解扫描，不会扫描@Service/@Repository的Bean-->
     <context:component-scan base-package="com.test.controller">
