@@ -60,11 +60,8 @@ public class LogAspect {
 
     @Around(value = "execution(* com.test.controller.*.*(..))")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
-/**
- * 1.获取request信息
- * 2.根据request获取session
- * 3.从session中取出登录用户信息
- */
+        String method = pjp.getSignature().getName();
+        String typeName = pjp.getSignature().getDeclaringTypeName();
         RequestAttributes ra = RequestContextHolder.getRequestAttributes();
         ServletRequestAttributes sra = (ServletRequestAttributes)ra;
         HttpServletRequest request = sra.getRequest();
