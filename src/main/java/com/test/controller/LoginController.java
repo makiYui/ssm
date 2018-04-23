@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +30,7 @@ public class LoginController {
     @Value(value = "${test.name}")
     private String str;
 
-    @RequestMapping(value = "login")
+    @RequestMapping(value = "login" ,method = RequestMethod.POST)
     public ModelAndView login(User user, HttpServletRequest request, HttpServletResponse response) {
         //测试idea提交git
         ModelAndView mv = new ModelAndView();
