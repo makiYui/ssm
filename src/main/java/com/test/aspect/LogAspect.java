@@ -1,6 +1,7 @@
 package com.test.aspect;
 
 import com.google.gson.Gson;
+import org.apache.logging.log4j.LogManager;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
@@ -26,7 +27,8 @@ import java.util.Map;
 @Component
 public class LogAspect {
 
-    private final Logger logger = LoggerFactory.getLogger(LogAspect.class);
+//    private final Logger logger = LoggerFactory.getLogger(LogAspect.class);
+    private static final org.apache.logging.log4j.Logger logger = LogManager.getLogger(LogAspect.class);
 
     private String requestPath = null ; // 请求地址
     private String userName = null ; // 用户名
@@ -71,8 +73,9 @@ public class LogAspect {
         // 获取请求地址
         requestPath = request.getRequestURI();
 
+        String token = "";
         if (!StringUtils.isEmpty(request.getSession().getAttribute("token"))) {
-            String token = request.getSession().getAttribute("token").toString();
+            token = request.getSession().getAttribute("token").toString();
         }
         // 执行完方法的返回值：调用proceed()方法，就会触发切入点方法执行
         outputParamMap = new HashMap<>();
