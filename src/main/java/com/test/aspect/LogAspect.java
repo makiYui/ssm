@@ -9,6 +9,7 @@ import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -70,6 +71,9 @@ public class LogAspect {
         // 获取请求地址
         requestPath = request.getRequestURI();
 
+        if (!StringUtils.isEmpty(request.getSession().getAttribute("token"))) {
+            String token = request.getSession().getAttribute("token").toString();
+        }
         // 执行完方法的返回值：调用proceed()方法，就会触发切入点方法执行
         outputParamMap = new HashMap<>();
         Object result = pjp.proceed();// result的值就是被拦截方法的返回值

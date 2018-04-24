@@ -2,6 +2,7 @@ package com.test.controller;
 
 import com.test.domain.User;
 import com.test.service.LoginService;
+import com.test.utils.TokenUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,9 +37,11 @@ public class LoginController {
         ModelAndView mv = new ModelAndView();
         boolean b = loginService.login(user);
         if (b) {
+            request.getSession().setAttribute("token", TokenUtil.randomString(32));
             mv.addObject("message", "success");
             mv.setViewName("/success");
         } else {
+            request.getSession().removeAttribute("token");
             mv.addObject("message", "fail");
             mv.setViewName("/fail");
         }
