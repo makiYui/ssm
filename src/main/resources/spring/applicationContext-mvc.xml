@@ -28,6 +28,19 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+    
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.test.Interceptor.LoginInterceptor">
+                <property name="exceptUrls">
+                    <list>
+                        <value>/index/login</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <!--注解扫描，不会扫描@Service/@Repository的Bean-->
     <context:component-scan base-package="com.test.controller">

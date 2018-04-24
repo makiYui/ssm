@@ -72,11 +72,6 @@ public class LogAspect {
         inputParamMap = request.getParameterMap();
         // 获取请求地址
         requestPath = request.getRequestURI();
-
-        String token = "";
-        if (!StringUtils.isEmpty(request.getSession().getAttribute("token"))) {
-            token = request.getSession().getAttribute("token").toString();
-        }
         // 执行完方法的返回值：调用proceed()方法，就会触发切入点方法执行
         outputParamMap = new HashMap<>();
         Object result = pjp.proceed();// result的值就是被拦截方法的返回值
